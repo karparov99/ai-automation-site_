@@ -1,6 +1,9 @@
 import { Search, Lightbulb, Wrench, Handshake } from 'lucide-react';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 export default function HowItWorks() {
+  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
+
   const steps = [
     {
       icon: Search,
@@ -25,11 +28,11 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-32 px-4 bg-dark-900 relative">
+    <section id="how-it-works" ref={sectionRef} className="py-32 px-4 bg-dark-900 relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-accent-blue/20 to-transparent"></div>
       
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-24 animate-fade-in">
+        <div className={`text-center mb-24 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
             How it <span className="text-gradient-blue">works</span>
           </h2>
@@ -44,8 +47,8 @@ export default function HowItWorks() {
             return (
               <div
                 key={idx}
-                className="group relative animate-fade-in"
-                style={{ animationDelay: `${idx * 0.15}s` }}
+                className={`group relative transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}
+                style={{ transitionDelay: `${idx * 200}ms` }}
               >
                 <div className="glass-card glass-card-hover p-10 h-full flex flex-col items-start hover:border-accent-blue/30 group">
                   <div className="flex items-center justify-between w-full mb-10">

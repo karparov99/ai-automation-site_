@@ -1,6 +1,9 @@
 import { CheckCircle, XCircle } from 'lucide-react';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 export default function WhoThisIsFor() {
+  const [sectionRef, isVisible] = useIntersectionObserver({ threshold: 0.1 });
+
   const forYou = [
     'Real operators managing actual workflows',
     'Teams losing hours to repetitive manual work',
@@ -18,11 +21,11 @@ export default function WhoThisIsFor() {
   ];
 
   return (
-    <section id="who-this-is-for" className="py-32 px-4 bg-dark-950 relative">
+    <section id="who-this-is-for" ref={sectionRef} className="py-32 px-4 bg-dark-950 relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
       
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-20 animate-fade-in text-balance">
+        <div className={`text-center mb-20 text-balance transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
             Is this the right <span className="text-gradient-emerald">investment?</span>
           </h2>
@@ -33,7 +36,7 @@ export default function WhoThisIsFor() {
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* For You */}
-          <div className="glass-card glass-card-hover p-8 lg:p-12 hover:border-emerald-500/50 animate-fade-in animation-delay-200">
+          <div className={`glass-card glass-card-hover p-8 lg:p-12 hover:border-emerald-500/50 transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
             <div className="flex items-center gap-4 mb-10">
               <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center">
                 <CheckCircle className="text-accent-emerald" size={28} />
@@ -52,7 +55,7 @@ export default function WhoThisIsFor() {
           </div>
 
           {/* Not For You */}
-          <div className="glass-card glass-card-hover p-8 lg:p-12 hover:border-red-500/50 animate-fade-in animation-delay-400">
+          <div className={`glass-card glass-card-hover p-8 lg:p-12 hover:border-red-500/50 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
             <div className="flex items-center gap-4 mb-10">
               <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
                 <XCircle className="text-red-500" size={28} />
