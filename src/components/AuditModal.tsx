@@ -33,6 +33,12 @@ export default function AuditModal({ isOpen, onClose }: AuditModalProps) {
     setErrorMessage('');
 
     try {
+      if (!supabase) {
+        setStatus('error');
+        setErrorMessage('Service not available. Please try again later.');
+        return;
+      }
+
       const { error } = await supabase.from('audit_requests').insert([formData]);
 
       if (error) {
