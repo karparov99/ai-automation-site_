@@ -5,29 +5,61 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    @apply bg-dark-900 text-dark-100;
   }
 
   body {
-    @apply antialiased;
+    @apply antialiased selection:bg-accent-blue/30 selection:text-white;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold leading-tight;
+    @apply font-bold tracking-tight leading-tight;
   }
 }
 
 @layer components {
   .section-heading {
-    @apply text-5xl md:text-6xl font-bold mb-6;
+    @apply text-5xl md:text-7xl font-extrabold mb-6;
   }
 
-  .prose-lg {
-    @apply text-lg leading-relaxed;
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-300;
+  }
+
+  .glass-card-hover {
+    @apply hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-accent-blue/5 hover:-translate-y-1;
+  }
+
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-blue-400 via-blue-200 to-slate-400 bg-clip-text text-transparent;
+  }
+
+  .text-gradient-emerald {
+    @apply bg-gradient-to-r from-emerald-400 via-teal-200 to-blue-400 bg-clip-text text-transparent;
+  }
+
+  .noise-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
   }
 }
 
 @layer utilities {
-  .backdrop-blur-sm {
-    backdrop-filter: blur(4px);
+  .animation-delay-200 {
+    animation-delay: 200ms;
   }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+}
+
+@keyframes slow-pan {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-2%, -2%) scale(1.1); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+.animate-slow-pan {
+  animation: slow-pan 20s ease-in-out infinite;
 }

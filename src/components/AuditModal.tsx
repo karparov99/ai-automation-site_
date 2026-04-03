@@ -33,6 +33,11 @@ export default function AuditModal({ isOpen, onClose }: AuditModalProps) {
     setErrorMessage('');
 
     try {
+      if (!supabase) {
+        setStatus('error');
+        setErrorMessage('Database connection not configured. Please set up environment variables.');
+        return;
+      }
       const { error } = await supabase.from('audit_requests').insert([formData]);
 
       if (error) {

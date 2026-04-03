@@ -20,44 +20,48 @@ export default function Credibility() {
   ];
 
   return (
-    <section className="py-24 px-4 bg-dark-900">
+    <section className="py-32 px-4 bg-dark-900 overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">Built on Real Experience</h2>
-          <p className="text-xl text-dark-300 max-w-2xl mx-auto">
+        <div className="text-center mb-24 animate-fade-in">
+          <h2 className="text-5xl md:text-7xl font-black mb-6">Built on Real Experience</h2>
+          <p className="text-xl text-dark-300 max-w-2xl mx-auto font-medium">
             Years working directly with teams, not just consulting about what might work.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-12 mb-24">
           {stats.map((stat, idx) => {
             const Icon = stat.icon;
             return (
               <div
                 key={idx}
-                className="text-center animate-fade-in"
-                style={{ animationDelay: `${idx * 0.1}s` }}
+                className="text-center group transition-all duration-300 animate-fade-in"
+                style={{ animationDelay: `${idx * 0.15}s` }}
               >
-                <div className="flex justify-center mb-6">
-                  <Icon className="text-accent-blue" size={40} />
+                <div className="flex justify-center mb-8">
+                  <div className="w-20 h-20 rounded-2xl bg-accent-blue/5 border border-accent-blue/10 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-accent-blue/10 group-hover:border-accent-blue/30 group-hover:shadow-xl group-hover:shadow-accent-blue/10">
+                    <Icon className="text-accent-blue" size={40} />
+                  </div>
                 </div>
-                <div className="text-5xl md:text-6xl font-bold text-accent-blue mb-2">{stat.value}</div>
-                <p className="text-lg text-dark-300">{stat.label}</p>
+                <div className="text-6xl md:text-7xl font-black text-white mb-4 group-hover:text-accent-blue transition-colors duration-300">{stat.value}</div>
+                <p className="text-lg text-dark-300 font-medium tracking-wide uppercase">{stat.label}</p>
               </div>
             );
           })}
         </div>
 
-        {/* Partner logos placeholder */}
-        <div className="mt-20 pt-16 border-t border-dark-700">
-          <p className="text-center text-dark-400 mb-10 text-sm uppercase tracking-wide">Trusted by teams across industries</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
+        {/* Partner logos */}
+        <div className="mt-32 pt-20 border-t border-white/5">
+          <p className="text-center text-dark-400 mb-12 text-sm font-bold uppercase tracking-widest opacity-60">Trusted by teams across industries</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center justify-items-center">
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className="w-24 h-24 bg-dark-800 border border-dark-700 rounded-lg flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity"
+                className="glass-card w-full h-24 flex items-center justify-center opacity-40 hover:opacity-100 hover:border-accent-blue/30 transition-all duration-500 group"
               >
-                <div className="text-dark-500 font-semibold text-sm">Company {i}</div>
+                <div className="text-dark-500 font-bold text-xs uppercase tracking-tighter group-hover:text-dark-200 transition-colors">
+                  Company {i}
+                </div>
               </div>
             ))}
           </div>

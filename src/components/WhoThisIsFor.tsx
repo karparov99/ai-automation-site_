@@ -18,45 +18,53 @@ export default function WhoThisIsFor() {
   ];
 
   return (
-    <section id="who-this-is-for" className="py-24 px-4 bg-dark-900">
+    <section id="who-this-is-for" className="py-32 px-4 bg-dark-950 relative">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+      
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6">This Is For You If...</h2>
-          <p className="text-xl text-dark-300 max-w-2xl mx-auto">
+        <div className="text-center mb-20 animate-fade-in text-balance">
+          <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
+            Is this the right <span className="text-gradient-emerald">investment?</span>
+          </h2>
+          <p className="text-xl text-dark-300 max-w-2xl mx-auto font-medium">
             We work best with operators who understand their problems and are ready to solve them systematically.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* For You */}
-          <div className="bg-dark-800 border border-dark-700 rounded-lg p-8 lg:p-10 hover:border-accent-emerald transition-colors duration-300 animate-fade-in">
-            <div className="flex items-center gap-3 mb-8">
-              <CheckCircle className="text-accent-emerald" size={32} />
-              <h3 className="text-2xl font-bold">This Is For You</h3>
+          <div className="glass-card glass-card-hover p-8 lg:p-12 hover:border-emerald-500/50 animate-fade-in animation-delay-200">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                <CheckCircle className="text-accent-emerald" size={28} />
+              </div>
+              <h3 className="text-3xl font-bold">This Is For You</h3>
             </div>
 
-            <ul className="space-y-6">
+            <ul className="space-y-8">
               {forYou.map((item, idx) => (
-                <li key={idx} className="flex gap-4">
-                  <CheckCircle className="text-accent-emerald flex-shrink-0 mt-1" size={20} />
-                  <span className="text-dark-100 text-lg">{item}</span>
+                <li key={idx} className="flex gap-5 group">
+                  <CheckCircle className="text-accent-emerald flex-shrink-0 mt-1 transition-transform group-hover:scale-125" size={20} />
+                  <span className="text-dark-100 text-lg lg:text-xl font-medium leading-normal">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Not For You */}
-          <div className="bg-dark-800 border border-dark-700 rounded-lg p-8 lg:p-10 hover:border-red-500 transition-colors duration-300 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            <div className="flex items-center gap-3 mb-8">
-              <XCircle className="text-red-500" size={32} />
-              <h3 className="text-2xl font-bold">This Is Not For You</h3>
+          <div className="glass-card glass-card-hover p-8 lg:p-12 hover:border-red-500/50 animate-fade-in animation-delay-400">
+            <div className="flex items-center gap-4 mb-10">
+              <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
+                <XCircle className="text-red-500" size={28} />
+              </div>
+              <h3 className="text-3xl font-bold text-dark-100">This Is Not For You</h3>
             </div>
 
-            <ul className="space-y-6">
+            <ul className="space-y-8">
               {notForYou.map((item, idx) => (
-                <li key={idx} className="flex gap-4">
-                  <XCircle className="text-red-500 flex-shrink-0 mt-1" size={20} />
-                  <span className="text-dark-100 text-lg">{item}</span>
+                <li key={idx} className="flex gap-5 group">
+                  <XCircle className="text-red-500/60 flex-shrink-0 mt-1 transition-transform group-hover:scale-125 group-hover:text-red-500" size={20} />
+                  <span className="text-dark-400 text-lg lg:text-xl font-medium leading-normal group-hover:text-dark-200 transition-colors">{item}</span>
                 </li>
               ))}
             </ul>
